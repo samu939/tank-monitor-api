@@ -10,11 +10,11 @@ export const odmDataBaseProviders: Provider =
   {
     try
     {
-      
-      // const connection = await connect( process.env.MONGO_DB )
+      console.log("connecting to: " + process.env.MONGO_DB!! ) 
+      const connection = await connect( process.env.MONGO_DB!! )
       // console.log(mongoose.connection.readyState);
 
-      // return connection
+      return connection
     } catch ( error )
     {
       // console.log( `Error al conectar a MongoDB: ${ error.message }` )

@@ -1,24 +1,36 @@
 version: '3.8'
 services:
-  devcontainer:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ../..:/workspaces:cached      
-    ports:
-      - ${PORT}:5555
+
+  mongoDb:
+    image: mongo:5
+    container_name: mongo_tank_monitor
     restart: always
-    env_file: ".env"
-    depends_on:
-      - db
-      - mongoDb
-    container_name: lambda_devcontainer
+    ports:
+      - ${MONGO_PORT}:27017
+    environment:
+      MONGODB_DATABASE: tank-monitor-db
+    volumes:
+      - /mongo:/data/db
     networks:
-      - lambda-network
+      - tank-monitor-network
+  # devcontainer:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ../..:/workspaces:cached      
+  #   ports:
+  #     - ${PORT}:5555
+  #   restart: always
+  #   env_file: ".env"
+  #   depends_on:
+  #     - mongoDb
+  #   container_name: tank_monitor_devcontainer
+  #   networks:
+  #     - tank-monitor-network
 
   
 
 networks:
-  lambda-network:
+  tank-monitor-network:
     driver: bridge

@@ -17,7 +17,7 @@ export class ExceptionDecorator<D extends ApplicationServiceEntryDto, R> extends
         this.exceptionHandler = exceptionHandler
     }
 
-    async execute ( data: D ): Promise<Result<R>>
+    async execute ( data: D ): Promise<Result<R> | Result<undefined>>
     {
         try{
             const result = await this.applicationService.execute( data )

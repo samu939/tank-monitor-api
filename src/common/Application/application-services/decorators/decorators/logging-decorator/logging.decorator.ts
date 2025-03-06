@@ -18,7 +18,7 @@ export class LoggingDecorator<D extends ApplicationServiceEntryDto, R> extends A
         this.logger = logger
     }
 
-    async execute ( data: D ): Promise<Result<R>>
+    async execute ( data: D ): Promise<Result<R> | Result<undefined>>
     {
         const result = await super.execute( data )
         const toLog: LoggerDto = {

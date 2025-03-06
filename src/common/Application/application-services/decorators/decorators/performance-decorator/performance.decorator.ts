@@ -18,7 +18,7 @@ export class PerformanceDecorator<D extends ApplicationServiceEntryDto, R> exten
         this.logger = logger
     }
 
-    async execute ( data: D ): Promise<Result<R>>
+    async execute ( data: D ): Promise<Result<R> | Result<undefined>>
     {
         const start = new Date().getTime()
         const result = await super.execute( data )

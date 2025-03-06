@@ -24,7 +24,7 @@ export class AuditingDecorator<D extends ApplicationServiceEntryDto, R> extends 
 
     }
 
-    async execute ( data: D ): Promise<Result<R>>
+    async execute ( data: D ): Promise<Result<R> | Result<undefined>>
     {
         const result = await super.execute( data )
         // const toAudith: AuditingDto = {

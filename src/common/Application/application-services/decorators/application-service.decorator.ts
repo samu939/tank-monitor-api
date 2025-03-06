@@ -19,7 +19,7 @@ export abstract class ApplicationServiceDecorator<D extends ApplicationServiceEn
         return this.applicationService.name
     }
 
-    execute ( data: D ): Promise<Result<R>>
+    execute ( data: D ): Promise<Result<R> | Result<undefined>>
     {
         return this.applicationService.execute( data )
     }
